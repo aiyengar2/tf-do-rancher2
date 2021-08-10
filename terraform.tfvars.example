@@ -86,3 +86,9 @@ user_tools = "root"
 # If you have more than 200 keys in your account, use: `doctl -t $DIGITALOCEAN_TOKEN compute ssh-key list | grep YOUR_KEY_NAME | awk '{ print $1 }'`
 # If this is not specified, you will get an email with the root password
 ssh_keys = []
+
+# FQDN for an (insecure) private registry that will be used with this cluster
+# It will be expected that this private registry will be accessible over HTTP, not HTTPS
+# See examples/provision_private_registry.sh for an example script on how to provision such
+# a registry with the necessary Rancher images
+private_registry = ""

@@ -127,6 +127,10 @@ variable "ssh_keys" {
   default = []
 }
 
+variable "private_registry" {
+  default = ""
+}
+
 data "digitalocean_account" "do-account" {
 }
 
@@ -214,6 +218,7 @@ data "template_file" "userdata_server" {
     rancher_args          = var.rancher_args
     k8s_version           = var.k8s_version
     audit_level           = var.audit_level
+    private_registry      = var.private_registry
   }
 }
 
@@ -227,6 +232,7 @@ data "template_file" "userdata_agent" {
     docker_root          = var.docker_root
     rancher_version      = var.rancher_version
     server_address       = digitalocean_droplet.rancherserver[0].ipv4_address
+    private_registry     = var.private_registry
   }
 }
 
@@ -235,6 +241,7 @@ data "template_file" "userdata_tools" {
 
   vars = {
     docker_version_agent = var.docker_version_agent
+    private_registry     = var.private_registry
   }
 }
 
